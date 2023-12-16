@@ -1,0 +1,76 @@
+AUTOBOXING:-
+
+Auto-boxing in Java refers to the automatic conversion of primitive data types to their corresponding wrapper classes, and vice versa. 
+
+This feature was introduced in Java 5 to simplify the process of working with primitive types in situations where objects are required. 
+
+The valueOf() method is a static method present in most wrapper classes in Java. It is used to create an instance of the wrapper class from a given primitive type or another compatible type. This method provides a way to obtain an object of the wrapper class that represents the same value as the provided argument.
+
+
+The following primitive types have corresponding wrapper classes:
+
+int → Integer
+char → Character
+boolean → Boolean
+byte → Byte
+short → Short
+long → Long
+float → Float
+double → Double
+Here's an example of auto-boxing:
+
+SYNTAX:_
+		public class AutoboxingExample {
+		    public static void main(String[] args) {
+		        // Autoboxing: converting int to Integer
+		        int primitiveInt = 42;
+		        Integer wrappedInt =Integer.valueof(primitiveInt);
+		        // Or  Integer wrappedInt =primitiveInt; 
+	
+		        // Autoboxing: converting double to Double
+		        double primitiveDouble = 3.14;
+		        Double wrappedDouble = primitiveDouble;
+		        //or  Double wrappedDouble = Integer.valueof(primitiveDouble);
+		        //i a sae way we can autobox for all primitive data types
+
+		        // Autoboxing: converting char to Character
+		        char primitiveChar = 'A';
+		        Character wrappedChar = primitiveChar;
+
+		        // Autoboxing: converting boolean to Boolean
+		        boolean primitiveBoolean = true;
+		        Boolean wrappedBoolean = primitiveBoolean;
+
+		        // Autoboxing: converting long to Long
+		        long primitiveLong = 123456789L;
+		        Long wrappedLong = primitiveLong;
+
+		        // Autoboxing: converting byte to Byte
+		        byte primitiveByte = 127;
+		        Byte wrappedByte = primitiveByte;
+
+		        // Autoboxing: converting short to Short
+		        short primitiveShort = 1000;
+		        Short wrappedShort = primitiveShort;
+
+		        // Autoboxing: converting float to Float
+		        float primitiveFloat = 3.5f;
+		        Float wrappedFloat = primitiveFloat;
+
+ 		       // Displaying the values
+				System.out.println("wrappedInt: " + wrappedInt);
+		        System.out.println("wrappedDouble: " + wrappedDouble);
+		        System.out.println("wrappedChar: " + wrappedChar);
+		        System.out.println("wrappedBoolean: " + wrappedBoolean);
+		        System.out.println("wrappedLong: " + wrappedLong);
+ 		        System.out.println("wrappedByte: " + wrappedByte);
+ 		        System.out.println("wrappedShort: " + wrappedShort);
+        		System.out.println("wrappedFloat: " + wrappedFloat);
+			    }
+		}
+		
+In this example, you can see that the primitive types are automatically converted to their corresponding wrapper classes without explicitly calling the constructor. This automatic conversion is known as autoboxing. 
+
+Similarly, the process of converting a wrapper class object back to its primitive type is called unboxing. 
+
+Autoboxing and unboxing help to enhance code readability and reduce the amount of boilerplate code when working with primitive types and their corresponding wrapper classes.

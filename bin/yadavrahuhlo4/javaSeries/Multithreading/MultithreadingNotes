@@ -1,0 +1,69 @@
+                      ***MULTI-THREADING***
+MultiThreading in Java allows you to execute multiple threads concurrently, allowing for better utilization of resources and improved performance. Threads are lightweight processes, and Java provides built-in support for MultiThreading through the java.lang.Thread class and the java.util.concurrent package.
+Here's a basic overview of how to work with multiThreading in Java:
+Creating a Thread:
+
+1)Via Extending Thread class:
+Syntax:_
+    class MyThread extends Thread {
+        public void run() {
+          // Code to be executed in the thread
+   		  }
+	}
+
+2)By Implementing Runnable interface:
+Syntax:_
+    class MyRunnable implements Runnable {
+    	public void run() {
+        // Code to be executed in the thread
+   	   	 }
+	}
+Starting a Thread:
+
+1)Using Thread class:
+Syntax:_
+		MyThread myThread = new MyThread();
+		myThread.start(); // Starts the thread and invokes the run() method
+		
+2)Using Runnable interface:
+
+		Thread thread = new Thread(new MyRunnable());
+		thread.start();
+		
+Thread LifeCycle:
+New: A thread that is created but not yet started.
+Runnable: A thread that is ready to run is moved to the runnable state.
+Blocked: A thread that is blocked waiting for a monitor lock.
+Waiting: A thread that is waiting indefinitely for another thread to perform a particular action.
+Timed Waiting: A thread that is waiting for another thread to perform a particular action for up to a specified waiting time.
+Terminated: A thread that has exited.
+
+
+ 
+		
+Joining Threads:
+The join() method allows one thread to wait for the completion of another. For example:
+		Thread thread1 = new MyThread();
+		Thread thread2 = new MyThread();
+		thread1.start();
+		thread2.start();
+		try {
+ 		    thread1.join(); // Waits for thread1 to finish
+		    thread2.join(); // Waits for thread2 to finish
+		} catch (InterruptedException e) {
+   			 e.printStackTrace();
+		}
+		
+							***Thread Pools:***
+Using ExecutorService from the java.util.concurrent package for managing and controlling threads.
+
+		ExecutorService executor = Executors.newFixedThreadPool(5); 
+		// Creates a pool of 5 threads
+
+for (int i = 0; i < 10; i++) {
+    Runnable worker = new MyRunnable();
+    executor.execute(worker); // Executes the Runnable in a thread from the pool
+}
+
+executor.shutdown(); // Shutdown the executor when done
+This is just a brief overview, and multithreading in Java can get more complex based on your specific use case. It's important to handle synchronization carefully to avoid issues like race conditions and deadlocks.

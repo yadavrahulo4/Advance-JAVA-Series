@@ -1,0 +1,75 @@
+                       ***Thread Synchronization:***
+As We know threads are unpredictable as executed parallelly ,at the same time 
+thus there may be scenario that in a banking software 2 people are accessing same account and one is withdrawing $100 and the another person depositing $100 , so if the thread is not synchronized it is possible that at same time both can see different AccountBalance in same Account.
+
+Synchronization:
+In Java, synchronization is a technique used to control access to shared resources by multiple threads to avoid data corruption or inconsistent states. The two primary ways to achieve synchronization in Java are through the use of the synchronized keyword and the java.util.concurrent package.
+              
+1)Synchronized Methods: Synchronized keyword is used to 
+Syntax:_
+		public synchronized void myMethod() {
+    		// Code to be executed in a synchronized manner
+		}
+
+2)Synchronized Blocks:-
+(used in case you want to synchronize a block of code in a method)
+
+The synchronized keyword is used to create a critical section of code.
+In this case, the critical section is defined by the synchronized block, which is enclosed by {}. 
+
+The lock used for synchronization is the object referenced by lockObject.
+
+> When a thread enters the synchronized block, it attempts to acquire the lock associated with lockObject.
+
+> If the lock is available, the thread enters the critical section and executes the code within the block.
+
+> If the lock is already held by another thread, the entering thread will be blocked until the lock becomes available.
+
+Syntax:_
+		public void myMethod() {
+ 		  synchronized (lockObject) {
+   		     // Code to be executed in a synchronized manner
+  		  }
+		}
+		
+3) Reentrant Locks:
+The ReentrantLock class from the java.util.concurrent.locks package provides an alternative to synchronized blocks with more flexibility. It supports features like lock interruption, timeouts, and fairness.
+Syntax:_
+		import java.util.concurrent.locks.Lock;
+		import java.util.concurrent.locks.ReentrantLock;
+
+		public class MyResource {
+		    private final Lock lock = new ReentrantLock();
+
+		    public void performTask() {
+		        lock.lock(); // Acquire the lock
+		        try {
+		            // Critical section: Code to be executed in a synchronized manner
+		        } finally {
+		            lock.unlock(); // Release the lock in a finally block to ensure it is always released
+ 		        }
+		    }
+		}
+		
+4. Volatile Keyword:
+The volatile keyword is used for variables shared among multiple threads. It ensures that a thread sees the most recent value of the variable. However, it does not provide atomicity for compound actions, so it's suitable for simple flags or indicators.
+Syntax:_
+		public class SharedResource {
+		    private volatile int sharedVariable;
+		}
+
+5. Atomic Classes:
+The java.util.concurrent.atomic package provides atomic classes that perform atomic operations on underlying variables. They eliminate the need for explicit synchronization in many cases.
+
+java
+Copy code
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class SharedResource {
+    private AtomicInteger atomicCounter = new AtomicInteger(0);
+
+    public void increment() {
+        atomicCounter.incrementAndGet(); // Atomic increment operation
+    }
+}
+These synchronization techniques help manage access to shared resources and prevent data corruption in a multithreaded environment. It's crucial to choose the right synchronization mechanism based on the specific requirements of your application to achieve both correctness and performance. Additionally, be aware of potential issues like deadlocks and contention and design your synchronization strategy accordingly.
