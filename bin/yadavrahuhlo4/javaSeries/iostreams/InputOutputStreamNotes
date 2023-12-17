@@ -1,0 +1,92 @@
+Certainly! Input and output (I/O) streams are fundamental concepts in Java for reading from and writing to various sources, such as files, network connections, and other input/output devices. Java provides a rich set of classes for handling I/O operations through the java.io package. Here's an overview of input and output streams in Java:
+
+Input Streams:
+InputStream:
+
+java.io.InputStream is the abstract superclass of all input stream classes.
+It represents a stream of bytes from which data can be read.
+Common methods include read(), read(byte[] b), and close().
+FileInputStream:
+
+java.io.FileInputStream is used to read data from a file.
+Example:
+
+try (FileInputStream fis = new FileInputStream("example.txt")) {
+    int byteRead;
+    while ((byteRead = fis.read()) != -1) {
+        // Process the byte read
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+}
+BufferedInputStream:
+
+java.io.BufferedInputStream provides buffering for an input stream, improving efficiency.
+It reads data from an underlying input stream into a buffer.
+Example:
+try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream("example.txt"))) {
+    int byteRead;
+    while ((byteRead = bis.read()) != -1) {
+        // Process the byte read
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+}
+Output Streams:
+OutputStream:
+
+java.io.OutputStream is the abstract superclass of all output stream classes.
+It represents a stream of bytes to which data can be written.
+Common methods include write(int b), write(byte[] b), and close().
+FileOutputStream:
+
+java.io.FileOutputStream is used to write data to a file.
+Example:
+try (FileOutputStream fos = new FileOutputStream("output.txt")) {
+    byte[] data = "Hello, Java IO!".getBytes();
+    fos.write(data);
+} catch (IOException e) {
+    e.printStackTrace();
+}
+BufferedOutputStream:
+
+java.io.BufferedOutputStream provides buffering for an output stream, improving efficiency.
+It writes data from a buffer to an underlying output stream.
+Example:
+try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("output.txt"))) {
+    byte[] data = "Hello, Java IO!".getBytes();
+    bos.write(data);
+} catch (IOException e) {
+    e.printStackTrace();
+}
+Other Stream Types:
+DataInputStream and DataOutputStream:
+
+For reading and writing primitive data types.
+Example:
+try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("data.bin"))) {
+    dos.writeInt(42);
+    dos.writeDouble(3.14);
+} catch (IOException e) {
+    e.printStackTrace();
+}
+ObjectInputStream and ObjectOutputStream:
+
+For reading and writing objects (serialization).
+Example:
+try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("object.bin"))) {
+    MyClass obj = new MyClass();
+    oos.writeObject(obj);
+} catch (IOException e) {
+    e.printStackTrace();
+}
+PrintStream:
+
+Provides functionality for formatted output.
+Example:
+try (PrintStream ps = new PrintStream("output.txt")) {
+    ps.println("Hello, Java IO!");
+} catch (IOException e) {
+    e.printStackTrace();
+}
+These examples cover some of the basic input and output stream classes in Java. When working with I/O operations, it's important to handle exceptions properly and close streams in a finally block or by using the try-with-resources statement (as shown in the examples) to ensure resources are released correctly.
